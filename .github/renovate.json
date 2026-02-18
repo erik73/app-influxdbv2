@@ -21,16 +21,6 @@
       "customType": "regex",
       "managerFilePatterns": ["//Dockerfile$/"],
       "matchStrings": [
-        "ARG ROUNDCUBE_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
-      ],
-      "datasourceTemplate": "github-tags",
-      "versioningTemplate": "loose",
-      "depNameTemplate": "roundcube/roundcubemail"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["//Dockerfile$/"],
-      "matchStrings": [
         "ARG INFLUXDB_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
       ],
       "datasourceTemplate": "github-tags",
