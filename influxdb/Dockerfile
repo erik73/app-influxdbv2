@@ -34,8 +34,10 @@ RUN apk add --no-cache \
     && if [ "${BUILD_ARCH}" = "armv7" ]; then ARCH="armhf"; fi \
     && curl -fLO "https://dl.influxdata.com/influxdb/releases/v${INFLUXDB_VERSION}/influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}.tar.gz" \
     &&  tar xzf "influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}.tar.gz" \
-    && cp "influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}/influxd /usr/bin/influxd" \
-    && rm -rf "influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}.tar.gz"
+    && cp "influxdb2-${INFLUXDB_VERSION}/usr/bin/influxd" /usr/bin/influxd \
+    && rm -rf "influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}.tar.gz" \
+        "influxdb2-${INFLUXDB_VERSION}"
+    
 
 # Copy root filesystem
 COPY rootfs /
