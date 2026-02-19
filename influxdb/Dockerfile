@@ -32,12 +32,10 @@ RUN apk add --no-cache \
     && ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then ARCH="arm64"; fi \
     && if [ "${BUILD_ARCH}" = "armv7" ]; then ARCH="armhf"; fi \
-    && curl -J -L -o /tmp/influxdb.deb \
-        "https://dl.influxdata.com/influxdb/releases/influxdb2-${INFLUXDB_VERSION}-${ARCH}.deb" \
-    && curl -J -L -o /tmp/influxcli.tar.gz \
-        "https://dl.influxdata.com/influxdb/releases/influxdb2-client-${INFLUXCLI_VERSION}-linux-${ARCH}.tar.gz" \
-    && curl -J -L -o /tmp/traefik.tar.gz \
-        "https://github.com/traefik/traefik/releases/download/v${TRAEFIK_VERSION}/traefik_v${TRAEFIK_VERSION}_linux_${ARCH}.tar.gz"
+    && curl -fLO "https://dl.influxdata.com/influxdb/releases/v${INFLUXDB_VERSION}/influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}.tar.gz" \
+    &&  tar xzf "influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}.tar.gz" \
+    && cp "influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}/influxd /usr/bin/influxd" \
+    && rm -rf "influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}.tar.gz"
 
 # Copy root filesystem
 COPY rootfs /
