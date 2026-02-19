@@ -27,7 +27,7 @@ RUN apk add --no-cache \
         gnupg \
         run-parts \
         su-exec \
-        tzdata && \
+        tzdata \
     && update-ca-certificates \
     && ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then ARCH="arm64"; fi \
