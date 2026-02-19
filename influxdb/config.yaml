@@ -1,12 +1,9 @@
 ---
 name: InfluxDB v2
-version: v0.0.4
+version: dev
 slug: influxdbv2
 description: Scalable datastore for metrics, events, and real-time analytics
 url: https://github.com/erik73/hassio-addons
-ingress: false
-ingress_port: 1337
-ingress_stream: false
 panel_icon: mdi:chart-areaspline
 startup: services
 homeassistant: 0.92.0b2
@@ -14,8 +11,6 @@ hassio_api: true
 arch:
   - aarch64
   - amd64
-  - armv7
-  - i386
 init: false
 map:
   - share:rw
