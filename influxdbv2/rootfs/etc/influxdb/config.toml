@@ -1,5 +1,6 @@
-engine-path = "data/influxdb/data"
-bolt-path = "/data/influxdb/influxd.bolt"
-log-level = "error"
-#tls-key = ""
-#tls-cert = "/etc/ssl/influxdb.pem"
+reporting-disabled = false
+engine-path = "/data/influxdb2/engine"
+bolt-path = "/data/influxdb2/influxd.bolt"
+sqlite-path = "/data/influxdb2/influxd.sqlite"
+http-read-timeout = "300s"
+http-write-timeout = "300s"

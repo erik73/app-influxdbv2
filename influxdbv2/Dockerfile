@@ -28,6 +28,7 @@ RUN apk add --no-cache \
         run-parts \
         su-exec \
         tzdata \
+        nginx \
     && update-ca-certificates \
     && ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then ARCH="arm64"; fi \
