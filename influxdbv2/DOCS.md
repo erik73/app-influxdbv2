@@ -47,7 +47,8 @@ influx_apiToken: <your API-Token>
 influx_orgID: <Your ORG-ID>
 ```
 
-Adding the following snippet to your `configuration.yaml` and alter it on your needs.
+Adding the following snippet to your `configuration.yaml` and alter it 
+to your needs.
 Especially ignore_attributes and entities. After that,
 please restart Homeassistant to take affect of your changes
 
@@ -98,7 +99,7 @@ influxdb:
 ### Options
 
 - log_level : setting up a general loglevel for the plugin
-- influxd_log_level : you can set up your separate loglevel for the influxd service.
+- influxd_log_level : you can set up a separate loglevel for the influxd service.
   thats because the service supports less options as log_level and they are named
   different
 - InfluxDB server: defines the PORT on which the InfluxDB is accessable beside
