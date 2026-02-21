@@ -18,17 +18,22 @@ Click on the "INSTALL" button.
 
 ## First Run
 
-Make sure, that the required port `8086` is not in use by another app (e.g. official InfluxDB1) or just alter it to another port. I'm going fine with `8087`. You can just change the post in the app configurations.
+Make sure, that the required port `8086` is not in use by another app
+(e.g. official InfluxDB1) or just alter it to another port.
+Use for example `8087`. You can just change the post in the app configurations.
 
 ![](../images/config1.jpg)
 
-After the app has been started, please navigate to it's landing page by replacing the ip and the port in the following URL:
+After the app has been started, please navigate to it's landing page by replacing
+the ip and the port in the following URL:
 http://192.168.1.x:8087
 
-On the first run, you have to fill in a `Username`, `Password`, `Organization Name` and `Bucket Name`.
+On the first run, you have to fill in a `Username`, `Password`,
+`Organization Name` and `Bucket Name`.
 ![](../images/setup1.jpg)
 
-If you are presented with an `API-Token` please note it down, you will need it later in your homeassistant configuration
+If you are presented with an `API-Token` please note it down,
+you will need it later in your homeassistant configuration
 ![](../images/setup2.jpg)
 
 ## Configuration
@@ -43,7 +48,8 @@ influx_orgID: <Your ORG-ID>
 ```
 
 Adding the following snippet to your `configuration.yaml` and alter it on your needs.
-Especially ignore_attributes and entities. After that, please restart Homeassistant to take affect of your changes
+Especially ignore_attributes and entities. After that,
+please restart Homeassistant to take affect of your changes
 
 ```yaml
 #InfluxDB2
@@ -92,12 +98,15 @@ influxdb:
 ### Options
 
 - log_level : setting up a general loglevel for the plugin
-- influxd_log_level : you can set up your separate loglevel for the influxd service. thats because the service supports less options as log_level and they are named different
-- InfluxDB server: defines the PORT on which the InfluxDB is accessable beside the INGRESS Implementation without HomeAssistant
+- influxd_log_level : you can set up your separate loglevel for the influxd service.
+  thats because the service supports less options as log_level and they are named
+  different
+- InfluxDB server: defines the PORT on which the InfluxDB is accessable beside
+  the INGRESS Implementation without HomeAssistant
 
 ## Known issues and limitations
 
-The current INGRESS Implementation is on an early stage. If you find any bugs, lets me know.
+The current INGRESS Implementation is on an early stage.
 
 ## Changelog & Releases
 
@@ -107,7 +116,8 @@ Please see the changelog
 
 ### Export data from InfluxDB1.x
 
-Open a shell on your homeassistant system and execute the following commandline to export all data from your 1.X database to a file
+Open a shell on your homeassistant system and execute the following commandline
+to export all data from your 1.X database to a file
 
 ```bash
 docker exec addon_a0d7b954_influxdb \
@@ -126,7 +136,9 @@ The following steps only works for supervised installations.
 
 For HassIO please have a look as https://github.com/hassio-addons/addon-influxdb/discussions/113#discussioncomment-6947661 (many thanks to https://github.com/mbalasz for the documentation)
 
-I would suggest, opening a direct shell to the new container. I had some timeouts during import if i execute these the same "docker exec.." way as the export works
+I would suggest, opening a direct shell to the new container.
+I had some timeouts during import if i execute these the same "docker exec.."
+way as the export works
 replace @token@ and @orgid@ with your values
 
 ```bash
@@ -141,8 +153,9 @@ influx write \
 
 ## V1 comatibility
 
-If you need v1.x compatiblity for e.g. grafana, you have to create a retention policy for the database and a user for authentification. Replace the @bucket@ with
-your value.
+If you need v1.x compatiblity for e.g. grafana, you have to create a retention
+policy for the database and a user for authentification.
+Replace the @bucket@ with your value.
 
 #### Retention Policy
 
@@ -167,9 +180,12 @@ influx v1 auth create \
 
 # Downsampling?
 
-Downsampling reduces the amount of datapoints in your database. So its easier and faster to work with data over a long period of time.
+Downsampling reduces the amount of datapoints in your database.
+So its easier and faster to work with data over a long period of time.
 
-Personally, i've created 2 buckets. The first buckets holds a datapoint every 15 minutes and the second bucket holds a datapoint every 60 minutes.
+Personally, i've created 2 buckets.
+The first buckets holds a datapoint every 15 minutes and the second bucket holds
+a datapoint every 60 minutes.
 
 ## 1. Downsample all existing data to the new buckets
 
