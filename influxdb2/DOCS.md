@@ -6,7 +6,8 @@ and performing analytics. It exposes an HTTP API for client interaction and is
 often used in combination with Grafana to visualize the data.
 
 This app runs the InfluxDB v2.x build channel. \
-For InfluxDB v1.x build channel, remove this app and install https://github.com/hassio-addons/addon-influxdb
+For InfluxDB v1.x build channel, remove this app and install
+https://github.com/hassio-addons/addon-influxdb
 
 ## Installation
 
