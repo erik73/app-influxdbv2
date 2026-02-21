@@ -1,65 +1,31 @@
-# Home Assistant Community Add-on: InfluxDB v2
+# Home Assistant App: InfluxDB2
 
-Scalable datastore for metrics, events, and real-time analytics.
+![Project Stage][project-stage-shield]
+
+![Supports aarch64 Architecture][aarch64-shield]
+![Supports amd64 Architecture][amd64-shield]
+
+[![Github Actions][github-actions-shield]][github-actions]
+![Project Maintenance][maintenance-shield]
+[![GitHub Activity][commits-shield]][commits]
+
+InfluxDB for app for HomeAssistant
 
 ## About
 
-InfluxDB is an open source time series database optimized for high-write-volume.
-It's useful for recording metrics, sensor data, events,
-and performing analytics. It exposes an HTTP API for client interaction and is
-often used in combination with Grafana to visualize the data.
+This app is provides InfluxDB version 2
 
-![InfluxDB v2 frontend](images/screenshot.png)
+## Support
 
-Compared to InfluxDB v1, v2 comes with a graphical administration interface which
-gives you management capabilities of users, databases,
-data retention settings, and lets you peek inside the database using the
-Data Explorer.
+Got questions?
 
-[Read the full add-on documentation](https://github.com/danieloldberg/addon-influxdbv2/blob/main/influxdb/DOCS.md)
-
-## Known issues and limitations
-
-- No SSL.
-- This InfluxDB v2 addon currently does not support Home Assistant web access, in other terms the ingress. Reason is that InfluxDB v2 does not support path-based reverse proxies, leading to technical challenges.
-
-## FAQ
-
-### Migrating from InfluxDB v1 to v2 (intermediate difficult level)
-
-To migrate from InfluxDB (hass community addon), easiest is to use [Advanced SSH & Web Terminal
-](https://home.danieloldberg.se/hassio/addon/a0d7b954_ssh/info) addon with Protection mode disabled. You're then able to execute docker commands with elevated permissions.
-
-**Please note**: Using the following mentioned methods may impact and/or destroy your entire Home Assistant installation if you don't know what you're doing. Please take appropriate precautions like backups and reading up on the machanics before proceeding.
-
-```bash
-docker ps -a # Descibe the containers running and finding the Ids.
-docker exec -it {{ addon_xxxxx_influxdb }} /bin/bash # Enter the v1 container. Replace addon_xxxxx_influxdb with the v1 Id
-influx_inspect export -compress -database homeassistant -out /data/exports/influxdb.gz -lponly -datadir /data/influxdb/data -waldir /data/influxdb/wal # Export the influxdb timeseries data
-exit # Exit container to host
-docker cp {{ addon_xxxxx_influxdb }}:/data/exports/influxdb.gz /root/ # Copy the backup to host
-docker cp /root/influxdb.gz {{ addon_xxxxx_influxdbv2 }}:/data/influxdb.gz # Copy the backup to the v2 container (Make sure it's started)
-docker exec -it {{ addon_xxxxx_influxdbv2 }} /bin/bash # Enter the v2 container. Replace addon_xxxxx_influxdbv2 with the v2 Id
-influx write \
-  --org-id homeassistant \
-  --bucket homeassistant \
-  --file /data/influxdb.gz \
-  --token {{ TOKEN }} # Replace {{ TOKEN }} with your homeassistant/operator token.
-rm /data/influxdb.gz # Remove backup from v2 container
-exit
-rm /influxdb.gz # Remove backup from host
-```
-
-## Authors & contributors
-
-Author of this repository is [Daniel Oldberg](https://github.com/danieloldberg/).
-Huge credits to Franck Nijhof and Home assistant community for their work on the original InfluxDB project that was used as the foundation.
+You could [open an issue here][issue] GitHub.
 
 ## License
 
 MIT License
 
-Copyright (c) 2018-2023
+Copyright (c) 2019-2026 Erik Hilton
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -78,3 +44,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+[aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
+[amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
+[commits-shield]: https://img.shields.io/github/commit-activity/y/erik73/app-influxdb2.svg
+[commits]: https://github.com/erik73/app-influxdb2/commits/main
+[github-actions-shield]: https://github.com/erik73/app-influxdb2/workflows/CI/badge.svg
+[github-actions]: https://github.com/erik73/app-influxdb2/actions
+[issue]: https://github.com/erik73/app-influxdb2/issues
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2026.svg
+[project-stage-shield]: https://img.shields.io/badge/project%20stage-production%20ready-brightgreen.svg
