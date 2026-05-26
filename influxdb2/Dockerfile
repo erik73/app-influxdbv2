@@ -24,7 +24,7 @@ RUN apk add --no-cache \
     && ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then ARCH="arm64"; fi \
     && if [ "${BUILD_ARCH}" = "armv7" ]; then ARCH="armhf"; fi \
-    && curl -fLO "https://dl.influxdata.com/influxdb/releases/v${INFLUXDB_VERSION}/influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}.tar.gz" \
+    && curl -fLO "https://dl.influxdata.com/influxdb/releases/influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}.tar.gz" \
     && tar xzf "influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}.tar.gz" \
     && cp "influxdb2-${INFLUXDB_VERSION}/influxd" /usr/bin/influxd \
     && rm -rf "influxdb2-${INFLUXDB_VERSION}_linux_${ARCH}.tar.gz" \
